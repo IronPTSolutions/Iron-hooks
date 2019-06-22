@@ -16,10 +16,6 @@ const routes = [
     route: 'use-context'
   },
   {
-    text: 'UseReducer',
-    route: 'use-reducer'
-  },
-  {
     text: 'FetchData',
     route: 'fetch-data'
   },

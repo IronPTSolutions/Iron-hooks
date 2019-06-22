@@ -1,22 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-const UseEffect = () => {
-  const [title, setTitle] = useState('Iron Hooks');
+class UseEffect extends React.Component {
+  state = {
+    title: 'Iron Hooks'
+  }
+  
+  setTitle = (title) => {
+    this.setState({ title }, () => {
+      document.title = title;
+    })
+  }
 
-  useEffect(() => {
-    document.title = title;
-  }, [title])
+  componentDidMount() {
+    document.title = this.state.title
+  }
 
-  return (
-    <div>
-      <h1>UseEffect Hook</h1>
+  render() {
+    const { title } = this.state;
+
+    return (
       <div>
-        <h3>Title of the page: {title}</h3>
-        <h5>Introduce the title you want to see:</h5>
-        <input type="text" className="form-control" onChange={(e) => setTitle(e.target.value)} />
+        <h1>UseEffect Hook</h1>
+        <div>
+          <h3>Title of the page: {title}</h3>
+          <h5>Introduce the title you want to see:</h5>
+          <input type="text" className="form-control" onChange={(e) => this.setTitle(e.target.value)} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default UseEffect;

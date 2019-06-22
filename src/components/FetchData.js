@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PieChart from 'react-simple-pie-chart';
 import IronService from '../services/IronService'
 
-const FetchData = () => {
-  const [data, setData] = useState([])
-  const [page, setPage] = useState(1)
-
-  const fetchData = async () => {
-    const response = await IronService.getData()
-
-    setData(response)
+class FetchData extends React.Component {
+  state = {
+    data: []
   }
 
-  useEffect(() => { fetchData() }, [page])
+  fetchData = async () => {
+    const data = await IronService.getData()
 
-  return (
-    <div>
-      <h1>UseState & UseEffect</h1>
+    this.setState({ data })
+  }
 
-      <div className="w-25">
-        {data.length === 0 ? 'Loading...' : <PieChart slices={data}/>}
+  componentDidMount() {
+    this.fetchData()
+  }
 
-        <button className="btn btn-primary d-block"
-          onClick={() => setPage(page + 1)}
-        >{page} - Next Page</button>
+  render() {
+    const { data } = this.state
+
+    return (
+      <div>
+        <h1>UseState & UseEffect</h1>
+
+        <div className="w-25">
+          {data.length === 0 ? 'Loading...' : <PieChart slices={data} />}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default FetchData;
