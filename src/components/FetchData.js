@@ -4,6 +4,7 @@ import IronService from '../services/IronService'
 
 const FetchData = () => {
   const [data, setData] = useState([])
+  const [page, setPage] = useState(1)
 
   const fetchData = async () => {
     const response = await IronService.getData()
@@ -11,7 +12,7 @@ const FetchData = () => {
     setData(response)
   }
 
-  useEffect(() => { fetchData() }, [])
+  useEffect(() => { fetchData() }, [page])
 
   return (
     <div>
@@ -19,6 +20,10 @@ const FetchData = () => {
 
       <div className="w-25">
         {data.length === 0 ? 'Loading...' : <PieChart slices={data}/>}
+
+        <button className="btn btn-primary d-block"
+          onClick={() => setPage(page + 1)}
+        >{page} - Next Page</button>
       </div>
     </div>
   );
