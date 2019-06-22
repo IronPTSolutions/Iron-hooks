@@ -5,6 +5,7 @@ import UseState from './UseState';
 import UseReducer from './UseReducer';
 import UseEffect from './UseEffect';
 import UseContext from './UseContext';
+import FetchData from './FetchData';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/use-context" component={UseContext} />
           <Route path="/use-effect" component={UseEffect} />
           <Route path="/use-reducer" component={UseReducer} />
+          <Route path="/fetch-data" component={FetchData} />
           <Route component={UseState} />
         </Switch>
       </div>

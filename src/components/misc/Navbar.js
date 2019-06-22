@@ -18,7 +18,11 @@ const routes = [
   {
     text: 'UseReducer',
     route: 'use-reducer'
-  }
+  },
+  {
+    text: 'FetchData',
+    route: 'fetch-data'
+  },
 ]
 
 const Navbar = () => {
